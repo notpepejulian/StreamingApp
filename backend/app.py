@@ -11,6 +11,7 @@ migrate = Migrate(app, db)  # Para migraciones con Flask-Migrate
 
 # Registra blueprints (ejemplo)
 from routes.content import content_bp
+app.register_blueprint(content_bp, url_prefix='/api/login')
 app.register_blueprint(content_bp, url_prefix='/api/content')
 
 @app.route('/')
