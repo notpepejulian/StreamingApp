@@ -54,9 +54,9 @@ mi-netflix-privado/
 ## 🔒 Variables de Entorno
 Archivo `.env` requerido:
 ```ini
-POSTGRES_USER=user
-POSTGRES_PASSWORD=password
-POSTGRES_DB=dbname
+POSTGRES_USER=nj17dssdsnj
+POSTGRES_PASSWORD=zGmPTVYFkTQBUP2V7uizIfWjs5
+POSTGRES_DB=StreamingApp
 JWT_SECRET_KEY=tu_super_secreto_aqui
 ```
 
