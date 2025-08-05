@@ -51,15 +51,6 @@ mi-netflix-privado/
 └── db/                  # Scripts SQL iniciales
 ```
 
-## 🔒 Variables de Entorno
-Archivo `.env` requerido:
-```ini
-POSTGRES_USER=nj17dssdsnj
-POSTGRES_PASSWORD=zGmPTVYFkTQBUP2V7uizIfWjs5
-POSTGRES_DB=StreamingApp
-JWT_SECRET_KEY=tu_super_secreto_aqui
-```
-
 ## 📌 Uso Básico
 1. Accede a la web: `http://localhost:8000`
 2. Inicia sesión con:
