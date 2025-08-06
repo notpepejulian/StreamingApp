@@ -36,6 +36,13 @@ Thumbs.db
 # Archivos de migraciones de Django (si aplica)
 migrations/
 
+# Ignorar carpetas de servicios dockerizados
+docker/qbittorrent/
+docker/radarr/
+docker/sonarr/
+docker/jellyseerr/
+docker/jellyfin/
+
 # Otros
 *.bak
 *.swp

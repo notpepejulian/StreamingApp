@@ -13,6 +13,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+
   backend:
     build: ../backend/
     ports:
@@ -23,5 +24,67 @@ services:
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       DB_NAME: ${POSTGRES_DB}
+
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    ports:
+      - "5055:5055"
+    environment:
+      - LOG_LEVEL=debug
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./jellyseerr:/app/config:z
+    depends_on:
+      - db
+
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./jellyfin/config:/config:z
+      - /media/movies:/movies:z
+      - /media/tv:/tv:z
+    environment:
+      - PUID=1000
+      - PGID=1000
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    ports:
+      - "8080:8080"  # WebUI
+    volumes:
+      - qbittorrent_config:/config
+      - /media/downloads/torrents:/downloads:z
+    environment:
+      - PUID=1000
+      - PGID=1000
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    ports:
+      - "7878:7878"
+    volumes:
+      - radarr_config:/config
+      - /media/peliculas:/movies:z
+    environment:
+      - PUID=1000
+      - PGID=1000
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    ports:
+      - "8989:8989"
+    volumes:
+      - sonarr_config:/config
+      - /media/tv:/tv:z
+    environment:
+      - PUID=1000
+      - PGID=1000
+
 volumes:
   postgres_data:
+  sonarr_config:
+  qbittorrent_config:
+  radarr_config:
