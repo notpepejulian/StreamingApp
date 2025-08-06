@@ -55,7 +55,7 @@ services:
     ports:
       - "8080:8080"  # WebUI
     volumes:
-      - qbittorrent_config:/config
+      - ./qbittorrent/config:/config:z
       - /media/downloads/torrents:/downloads:z
     environment:
       - PUID=1000
@@ -66,7 +66,7 @@ services:
     ports:
       - "7878:7878"
     volumes:
-      - radarr_config:/config
+      - ./radarr/config:/config:z
       - /media/peliculas:/movies:z
     environment:
       - PUID=1000
@@ -77,14 +77,11 @@ services:
     ports:
       - "8989:8989"
     volumes:
-      - sonarr_config:/config
-      - /media/tv:/tv:z
+      - ./sonarr/config:/config:z
+      - /media/series:/tv:z
     environment:
       - PUID=1000
       - PGID=1000
 
 volumes:
   postgres_data:
-  sonarr_config:
-  qbittorrent_config:
-  radarr_config:
